@@ -16,6 +16,9 @@ public class BookshelfConfig {
     public static boolean oreDictArrows;
     
     public static int translateEnchantmentCount;
+
+
+    public static String[] publicCommands;
     
     public BookshelfConfig(File file) {
         
@@ -37,7 +40,12 @@ public class BookshelfConfig {
         final String category1 = "translations";
         config.setCategoryComment(category1, "Adds support for additional levels. Lowering this can improve memory.");
         translateEnchantmentCount = config.getInt("enchantmentCount", category1, 256, 0, Short.MAX_VALUE, "The amount of enchantment levels to translate. 10 or less will disable this.");
-        
+
+        final String category2 = "commands";
+        config.setCategoryComment(category2, "Change Commands registered via Bookshelf");
+        publicCommands = config.getStringList("public_commands", category2, new String[]{}, "Commands specified here will be accessible by non OP Players");
+
+
         if (config.hasChanged()) {
             config.save();
         }

@@ -7,6 +7,7 @@
  */
 package net.darkhax.bookshelf;
 
+import net.darkhax.bookshelf.command.CustomPermCommand;
 import net.darkhax.bookshelf.crafting.AnvilRecipe;
 import net.darkhax.bookshelf.crafting.IAnvilRecipe;
 import net.darkhax.bookshelf.lib.ModTrackingList;
@@ -166,8 +167,10 @@ public class BookshelfRegistry {
      * @param command The command to add.
      */
     public static void addCommand (ICommand command) {
-        
-        commands.add(command);
+
+        ICommand modifiedCommand = CustomPermCommand.transformCommand(command);
+
+        commands.add(modifiedCommand);
     }
     
     /**
